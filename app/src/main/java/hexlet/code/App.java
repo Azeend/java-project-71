@@ -12,11 +12,12 @@ public class App implements Callable {
     private String file1;
     @Parameters(index = "1", description = "path to second file")
     private String file2;
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish", description = "output format: stylish, plain"
+            + " [default: stylish]")
     private String format;
     @Override
     public final Object call() throws Exception {
-        System.out.println(Differ.generate(file1, file2));
+        System.out.println(Differ.generate(file1, file2, format));
         return null;
     }
     public static void main(String[] args) {
