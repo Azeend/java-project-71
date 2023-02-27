@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DifferTest {
     private final String expectedStylish = """
             {
-            - age: 21
-            + age: 20
-            + children: true
-              name: Mark
-            - student: true
+              - age: 21
+              + age: 20
+              + children: true
+                name: Mark
+              - student: true
             }""";
     private final String expectedPlain = """
             Property 'age' was updated. From 21 to 20

@@ -56,16 +56,16 @@ public class Formatter {
         var builder = new StringBuilder("{\n");
         for (String key: keySet) {
             if (data.containsKey(key) && !data2.containsKey(key)) {
-                builder.append("- ").append(key).append(": ").append(data.get(key)).append("\n");
+                builder.append("  - ").append(key).append(": ").append(data.get(key)).append("\n");
             } else if (!data.containsKey(key) && data2.containsKey(key)) {
-                builder.append("+ ").append(key).append(": ").append(data2.get(key)).append("\n");
+                builder.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
             } else if (data.containsKey(key) && data2.containsKey(key)
                     && !Objects.equals(data.get(key), data2.get(key))) {
-                builder.append("- ").append(key).append(": ").append(data.get(key)).append("\n");
-                builder.append("+ ").append(key).append(": ").append(data2.get(key)).append("\n");
+                builder.append("  - ").append(key).append(": ").append(data.get(key)).append("\n");
+                builder.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
             } else if (data.containsKey(key) && data2.containsKey(key)
                     && Objects.equals(data.get(key), data2.get(key))) {
-                builder.append("  ").append(key).append(": ").append(data.get(key)).append("\n");
+                builder.append("    ").append(key).append(": ").append(data.get(key)).append("\n");
             }
         }
         builder.append("}");
