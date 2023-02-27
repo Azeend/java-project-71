@@ -5,16 +5,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.lang.reflect.Array;
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.TreeSet;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.Objects;
 import java.util.LinkedHashMap;
 
 public class Formatter {
     private static String checkValue(Object value) {
-        if (value instanceof Array || value instanceof Collection<?> || value instanceof Objects) {
+        if (value instanceof Map || value instanceof List || value instanceof Object[])  {
             return "[complex value]";
         } else if (value == null) {
             return null;
