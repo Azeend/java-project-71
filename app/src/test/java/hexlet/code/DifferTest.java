@@ -19,13 +19,24 @@ public class DifferTest {
             Property 'children' was added with value: true
             Property 'student' was removed""";
     private final String expectedJson = """
-            {
-              "- age" : 21,
-              "+ age" : 20,
-              "+ children" : true,
-              "  name" : "Mark",
-              "- student" : true
-            }""";
+            [ {
+              "key" : "age",
+              "oldValue" : 21,
+              "newValue" : 20,
+              "action" : "updated"
+            }, {
+              "key" : "children",
+              "newValue" : true,
+              "action" : "added"
+            }, {
+              "key" : "name",
+              "oldValue" : "Mark",
+              "action" : "unchanged"
+            }, {
+              "key" : "student",
+              "oldValue" : true,
+              "action" : "removed"
+            } ]""";
     @Test
     public void genereteTest() throws Exception {
         String actual = generate("src/test/resources/fixtures/TestFile1.json",

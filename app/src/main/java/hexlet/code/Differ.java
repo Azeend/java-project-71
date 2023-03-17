@@ -4,6 +4,7 @@ import hexlet.code.formatter.Formatter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Map;
 
 public class Differ {
@@ -17,23 +18,17 @@ public class Differ {
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }
-
         // Читаем файл
         String content = Files.readString(path);
         String content2 = Files.readString(path2);
-        Map<String, Object> data = Parser.parserJson(content, pathfile1);
-        Map<String, Object> data2 = Parser.parserJson(content2, pathfile2);
-        switch (format) {
-            case "stylish" -> {
-                return Formatter.makeStylish(data, data2);
-            }
-            case "plain" -> {
-                return Formatter.makePlain(data, data2);
-            }
-            case "json" -> {
-                return Formatter.makeJson(data, data2);
-            }
-            default -> throw new Exception("Formatting error");
-        }
+        // Получаем формат
+        String fileFormat1 = pathfile1.substring(pathfile1.lastIndexOf(".") + 1);
+        String fileFormat2 = pathfile2.substring(pathfile2.lastIndexOf(".") + 1);
+        // Получаем содержимое
+        Map<String, Object> data1 = Parser.getData(content, fileFormat1);
+        Map<String, Object> data2 = Parser.getData(content2, fileFormat2);
+        // Получаем различия
+        List<Map<String, Object>> differences = ListOfDifferences.getDifferences(data1, data2);
+        return Formatter.getFormattedDifferences(differences, format);
     }
 }
