@@ -43,29 +43,4 @@ public class PlainFormatter {
         }
         return result.toString().trim();
     }
-    /*public static String makePlain(Map<String, Object> data, Map<String, Object> data2) {
-        Set<String> keySet = new TreeSet<>();
-        keySet.addAll(data.keySet());
-        keySet.addAll(data2.keySet());
-        var builder = new StringBuilder();
-        for (String key: keySet) {
-            if (data.containsKey(key) && !data2.containsKey(key)) {
-                builder.append("Property ").append("'")
-                        .append(key).append("'").append(" was removed").append("\n");
-            } else if (!data.containsKey(key) && data2.containsKey(key)) {
-                builder.append("Property ").append(checkValue(key))
-                        .append(" was added with value: ")
-                        .append(checkValue(data2.get(key)))
-                        .append("\n");
-            } else if (data.containsKey(key) && data2.containsKey(key)
-                    && !Objects.equals(data.get(key), data2.get(key))) {
-                builder.append("Property ").append(checkValue(key))
-                        .append(" was updated. From ")
-                        .append(checkValue(data.get(key))).append(" to ")
-                        .append(checkValue(data2.get(key)))
-                        .append("\n");
-            }
-        }
-        return builder.toString().trim();
-    }*/
 }

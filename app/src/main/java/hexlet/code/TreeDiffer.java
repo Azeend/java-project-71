@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.TreeSet;
 import java.util.LinkedHashMap;
 import java.util.Objects;
-public class ListOfDifferences {
+public class TreeDiffer {
     public static List<Map<String, Object>> getDifferences(Map<String, Object> data1, Map<String, Object> data2) {
         List<Map<String, Object>> differences =  new ArrayList<>();
         Set<String> keySet = new TreeSet<>();

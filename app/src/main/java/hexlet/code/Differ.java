@@ -12,23 +12,29 @@ public class Differ {
         return generate(pathfile1, pathfile2, "stylish");
     }
     public static String generate(String pathfile1, String pathfile2, String format) throws Exception {
-        Path path = Paths.get(pathfile1).toAbsolutePath().normalize();
-        Path path2 = Paths.get(pathfile2).toAbsolutePath().normalize();
-        // Проверяем существование файла
+        // Читаем файл
+        String content = getData(pathfile1);
+        String content2 = getData(pathfile2);
+        // Получаем формат
+        String fileFormat1 = getFormat(pathfile1);
+        String fileFormat2 = getFormat(pathfile2);
+        // Получаем содержимое
+        Map<String, Object> data1 = Parser.getDataAsMap(content, fileFormat1);
+        Map<String, Object> data2 = Parser.getDataAsMap(content2, fileFormat2);
+        // Получаем различия
+        List<Map<String, Object>> differences = TreeDiffer.getDifferences(data1, data2);
+        return Formatter.format(differences, format);
+    }
+    private static String getData(String pathfile) throws Exception {
+        Path path = Paths.get(pathfile).toAbsolutePath().normalize();
         if (!Files.exists(path)) {
             throw new Exception("File '" + path + "' does not exist");
         }
-        // Читаем файл
         String content = Files.readString(path);
-        String content2 = Files.readString(path2);
-        // Получаем формат
-        String fileFormat1 = pathfile1.substring(pathfile1.lastIndexOf(".") + 1);
-        String fileFormat2 = pathfile2.substring(pathfile2.lastIndexOf(".") + 1);
-        // Получаем содержимое
-        Map<String, Object> data1 = Parser.getData(content, fileFormat1);
-        Map<String, Object> data2 = Parser.getData(content2, fileFormat2);
-        // Получаем различия
-        List<Map<String, Object>> differences = ListOfDifferences.getDifferences(data1, data2);
-        return Formatter.getFormattedDifferences(differences, format);
+        return content;
+    }
+    private static String getFormat(String pathfile) {
+        String fileFormat = pathfile.substring(pathfile.lastIndexOf(".") + 1);
+        return fileFormat;
     }
 }

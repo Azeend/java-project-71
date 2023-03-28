@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    public static String getFormattedDifferences(List<Map<String, Object>> differences, String format)
+    public static String format(List<Map<String, Object>> differences, String format)
             throws Exception {
         switch (format) {
             case "stylish" -> {

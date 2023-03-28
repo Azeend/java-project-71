@@ -25,26 +25,4 @@ public class StylishFormatter {
         builder.append("}");
         return builder.toString();
     }
-    /*public static String makeStylish(Map<String, Object> data, Map<String, Object> data2) {
-        Set<String> keySet = new TreeSet<>();
-        keySet.addAll(data.keySet());
-        keySet.addAll(data2.keySet());
-        var builder = new StringBuilder("{\n");
-        for (String key: keySet) {
-            if (data.containsKey(key) && !data2.containsKey(key)) {
-                builder.append("  - ").append(key).append(": ").append(data.get(key)).append("\n");
-            } else if (!data.containsKey(key) && data2.containsKey(key)) {
-                builder.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
-            } else if (data.containsKey(key) && data2.containsKey(key)
-                    && !Objects.equals(data.get(key), data2.get(key))) {
-                builder.append("  - ").append(key).append(": ").append(data.get(key)).append("\n");
-                builder.append("  + ").append(key).append(": ").append(data2.get(key)).append("\n");
-            } else if (data.containsKey(key) && data2.containsKey(key)
-                    && Objects.equals(data.get(key), data2.get(key))) {
-                builder.append("    ").append(key).append(": ").append(data.get(key)).append("\n");
-            }
-        }
-        builder.append("}");
-        return builder.toString();
-    }*/
 }
