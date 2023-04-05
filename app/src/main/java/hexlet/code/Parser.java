@@ -17,7 +17,7 @@ public class Parser {
                 ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
                 return objectMapper.readValue(content, new TypeReference<>() { });
             }
-            default -> throw new Exception("Unavailable  format");
+            default -> throw new RuntimeException();
         }
 
     }

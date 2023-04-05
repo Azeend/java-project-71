@@ -15,7 +15,7 @@ public class Formatter {
             case "json" -> {
                 return JsonFormatter.makeJson(differences);
             }
-            default -> throw new Exception("Formatting error");
+            default -> throw new RuntimeException();
         }
     }
 }
