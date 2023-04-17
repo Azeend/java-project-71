@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.List;
 
 public class PlainFormatter {
-    private static String checkValue(Object value) {
+    private static String valueToString(Object value) {
         if (value instanceof Map || value instanceof List || value instanceof Object[])  {
             return "[complex value]";
         } else if (value == null) {
@@ -24,16 +24,16 @@ public class PlainFormatter {
                             .append(diffs.get("key")).append("'").append(" was removed").append("\n");
                 }
                 case "added" -> {
-                    result.append("Property ").append(checkValue(diffs.get("key")))
+                    result.append("Property ").append(valueToString(diffs.get("key")))
                             .append(" was added with value: ")
-                            .append(checkValue(diffs.get("newValue")))
+                            .append(valueToString(diffs.get("newValue")))
                             .append("\n");
                 }
                 case "updated" -> {
-                    result.append("Property ").append(checkValue(diffs.get("key")))
+                    result.append("Property ").append(valueToString(diffs.get("key")))
                             .append(" was updated. From ")
-                            .append(checkValue(diffs.get("oldValue"))).append(" to ")
-                            .append(checkValue(diffs.get("newValue")))
+                            .append(valueToString(diffs.get("oldValue"))).append(" to ")
+                            .append(valueToString(diffs.get("newValue")))
                             .append("\n");
                 }
                 default -> {

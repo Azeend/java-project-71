@@ -1,0 +1,18 @@
+[ {
+  "key" : "age",
+  "oldValue" : 21,
+  "newValue" : 20,
+  "action" : "updated"
+}, {
+  "key" : "children",
+  "newValue" : true,
+  "action" : "added"
+}, {
+  "key" : "name",
+  "oldValue" : "Mark",
+  "action" : "unchanged"
+}, {
+  "key" : "student",
+  "oldValue" : true,
+  "action" : "removed"
+} ]
